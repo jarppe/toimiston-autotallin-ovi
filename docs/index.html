@@ -62,8 +62,8 @@
 
       const openDoor = () => {
         setState(OPENING);
-        fetch(url, {mode: "cors"})
-          .then(resp => setState(resp.ok ? DONE : ERROR))
+        fetch(url, {mode: "no-cors"})
+          .then(resp => setState(DONE))
           .catch(_ => setState(ERROR));
       }
 

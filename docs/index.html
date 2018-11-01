@@ -36,7 +36,7 @@
       }
       #button span {
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 100px;
+        font-size: 60px;
       }
     </style>
   </head>
@@ -68,9 +68,9 @@
             url = "https://0u41eh32ei.execute-api.eu-central-1.amazonaws.com/default/autohalli",
             message = document.getElementById("message");
       
-      const READY = "OPEN",
+      const READY = "CLICK TO OPEN",
             OPENING = "...",
-            DONE = "OPENING",
+            DONE = "DOOR OPENING",
             ERROR = "FAIL";
 
       var state = READY;
@@ -83,8 +83,14 @@
       const openDoor = () => {
         setState(OPENING);
         fetch(url, fetchOpts)
-          .then(resp => { console.log("resp:", resp); setState(DONE); })
-          .catch(e => { console.log("error:", e); setState(ERROR); });
+          .then(resp => { 
+            console.log("resp:", resp); 
+            setState(DONE); 
+          })
+          .catch(e => { 
+            console.log("error:", e); 
+            setState(ERROR); 
+          });
       }
 
       const click = () => {

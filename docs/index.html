@@ -42,7 +42,7 @@
   </head>
   <body>
     <div id="button">
-      <span id="message">OPEN</span>
+      <span id="message">Loading...</span>
     </div>
     <script>
       const query = window
@@ -73,7 +73,7 @@
             DONE = "DOOR OPENING",
             ERROR = "FAIL";
 
-      var state = READY;
+      var state = null;
 
       const setState = newState => {
         state = newState;
@@ -102,6 +102,7 @@
       }
 
       document.getElementById("button").onclick = click;
+      setState(READY);
     </script>
   </body>
 </html>

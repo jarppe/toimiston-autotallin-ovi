@@ -1,6 +1,8 @@
 "use strict";
 
-const 
+const
+  url = "https://0u41eh32ei.execute-api.eu-central-1.amazonaws.com/default/autohalli",
+  message = document.getElementById("message"),
   query = window
     .location
     .search
@@ -12,16 +14,15 @@ const
       return params;
     }, {}),
   passkey = query["passkey"],
+  body = JSON.stringify({passkey: passkey}),
   fetchOpts = {
     mode: "no-cors",
     method: "POST",
-    body: JSON.stringify({passkey: passkey}),
+    body: body,
     headers: {
       "Content-Type": "application/json"
     }
-  },
-  url = "https://0u41eh32ei.execute-api.eu-central-1.amazonaws.com/default/autohalli",
-  message = document.getElementById("message");
+  };
 
 const
   READY = "CLICK TO OPEN",
@@ -39,7 +40,10 @@ const setState = newState => {
 const openDoor = () => {
   setState(OPENING);
   fetch(url, fetchOpts)
-    .then(_ => setState(DONE))
+    .then(resp => { 
+      console.log("resp:", resp); 
+      setState(DONE);
+    })
     .catch(e => { 
       console.log("error:", e); 
       setState(ERROR); 
